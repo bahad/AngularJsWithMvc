@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container" ng-controller="TestMy">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ProductName</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in Products">
+                <td>{{data.ProductID}}</td>
+                <td>{{data.ProductName}}</td>
+               
+            </tr>           
+        </tbody>
+    </table>
+    <p>{{CurrentPage}} of {{TotalPages}} pages</p>
+    <ul class="pager">
+        <li class="previous"><a href="#" ng-click="GetPageData(FirstPage)"><i class="fa fa-fast-backward"></i>&nbsp;First</a></li>
+        <li>
+            <select ng-model="pageSize" ng-change="GetPageData(1)">
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+            </select>
+        </li>
+        <li>
+            <a href="#" ng-click="GetPageData(BackwardOne)"><i class="glyphicon glyphicon-backward"></i></a>
+            <a class="page-number active" ng-repeat="data in PageNumberArray" ng-click="GetPageData(data)" href="#">{{data}} &nbsp;&nbsp;</a>
+            <a href="#" ng-click="GetPageData(ForwardOne)" ng-show="showForwardBtn"><i class="glyphicon glyphicon-forward"></i></a>
+        </li>
+        <li class="next"><a href="#" ng-click="GetPageData(LastPage)">Last&nbsp;<i class="fa fa-fast-forward"></i></a></li>
+    </ul>
+
+</div>
+<script src="~/Scripts/customJS/HomeIndexController.js"></script>
